@@ -1,4 +1,5 @@
-#Readme
-This is my readme. (above is made bold by single #)
+##Readme
+This is my readme.
 
-## This is my smaller title (two # marks used)
+# Purpose
+To learn to share files between computers.
