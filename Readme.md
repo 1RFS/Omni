@@ -1,5 +1,4 @@
 #Readme
-This is my readme file.
-I'm adding more changes.
-Change 3.
-Another change
+This is my readme. (above is made bold by single #)
+
+## This is my smaller title (two # marks used)
