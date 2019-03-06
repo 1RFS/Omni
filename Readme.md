@@ -6,6 +6,7 @@ Changed on my Pi2-2.
 This was changed by Pi_3
 
 Changed again on Pi3-2
+
 #new line
 Changed by Pi_4
 #second new line
