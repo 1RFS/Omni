@@ -8,8 +8,13 @@ This was changed by Pi_3
 Changed again on Pi3-2
 
 #new line
+
 Changed by Pi_4
+
 #second new line
+
 Changed by MacPro
+
 # Purpose
+
 To learn to share files between computers.
