@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
      clilen = sizeof cli_addr;
 
 
-     while (1) {
+     /*while (1) {
 	//sin_size = sizeof cli_addr;
          newsockfd = accept(sockfd, 
                (struct sockaddr *) &cli_addr, &clilen);
