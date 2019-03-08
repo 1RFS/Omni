@@ -155,7 +155,7 @@ int main(void)
 				// add function to write() sum to specific  client
 				bytesRecFromClient = recv(new_fd, msgFromClient,4,0);
 				//msgFromClient[bytesRecFromClient] = '\0';
-				printf("from client: received '%s'\n",msgFromClient);
+				printf("from client: received '%s'\n",msgFromClient); // convert the char* msgFromClient into a string first
                         //}
 			close(new_fd);
 			exit(0);
