@@ -22,7 +22,8 @@ using namespace std;
 #define PORT "3490"  // the port users will be connecting to
 #define SERVERIP "192.168.0.2" // my add for the server's IP address
 
-#define BACKLOG 10	 // how many pending connections queue will hold
+#define BACKLOG 20	 // how many pending connections queue will hold
+#define MAXDATASIZE 100 // max number of bytes we can get at once
 
 void sigchld_handler(int s)
 {
@@ -57,8 +58,9 @@ int main(void)
 	int yes=1;
 	char s[INET6_ADDRSTRLEN];
 	int rv;
-	// added declarations for recv():
-	char* msgFromClient;
+	// added buf declaration for recv():
+	char buf[MAXDATASIZE];
+
 	int lenStrFromClient, bytesRecFromClient;
 
 	memset(&hints, 0, sizeof hints);
@@ -79,6 +81,7 @@ int main(void)
 	}
 
 	// loop through all the results and bind to the first we can
+	// ** socket() is used to create sockfd which is a file descriptor (socket descriptor)
 	for(p = servinfo; p != NULL; p = p->ai_next) {
 		if ((sockfd = socket(p->ai_family, p->ai_socktype,
 				p->ai_protocol)) == -1) {
@@ -102,7 +105,7 @@ int main(void)
 		break;
 	}
 
-	freeaddrinfo(servinfo); // all done with this structure
+	freeaddrinfo(servinfo); // memory free up the list gotten from getaddrinfo(), because we are all done with this structure
 
 	if (p == NULL)  {
 		fprintf(stderr, "server: failed to bind\n");
@@ -139,8 +142,8 @@ int main(void)
 		printf("server: got connection from %s\n", s);
 
 
-		if (!fork()) { // this is the child process
-			close(sockfd); // child doesn't need the listener
+		if (!fork()) { // this is the child process, and we are closing the sockfd only for this process
+			close(sockfd); // child doesn't need the listener because its connection is established
 
 			// *** added the while loop here
 			//while(1){
@@ -153,9 +156,8 @@ int main(void)
 				
 				// add funciton to add() all vars
 				// add function to write() sum to specific  client
-				bytesRecFromClient = recv(new_fd, msgFromClient,4,0);
-				//msgFromClient[bytesRecFromClient] = '\0';
-				printf("from client: received '%s'\n",msgFromClient); // convert the char* msgFromClient into a string first
+				bytesRecFromClient = recv(new_fd, buf, MAXDATASIZE-1, 0);
+				printf("server: received '%s'\n",buf);
                         //}
 			close(new_fd);
 			exit(0);

@@ -83,9 +83,8 @@ int main(int argc, char *argv[])
 
 	freeaddrinfo(servinfo); // all done with this structure
 
-	// New ************** Added below:
-	char *myMsg;
-
+	// New ************** Added message below:
+	char *myMsg = "This is my first send() message to the server";
 	int myLen, myBytesSent;
 	myLen = strlen(myMsg);
 
@@ -105,7 +104,7 @@ int main(int argc, char *argv[])
 		printf("client: received '%s'\n",buf);
 
 		// send() stuff here
-		myBytesSent = send(sockfd, "test",4,0);
+		myBytesSent = send(sockfd, myMsg, myLen, 0);
 	//}
 
 	close(sockfd);
