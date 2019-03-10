@@ -105,6 +105,9 @@ int main(int argc, char *argv[])
 
 		printf("client: received '%s'\n",buf);
 
+		if (send(sockfd, "Hello from client!\n", 13, 0) == -1)
+				perror("send");
+
 		// send() stuff here
 		//myBytesSent = send(sockfd, *myMsg, myLen, 0);
 	//}
