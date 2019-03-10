@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
 	int sockfd, numbytes;  
 	char buf[MAXDATASIZE];
 	//const char *myMsg[11];
-	string *myMsg = {"0123456789"}
+	//std::string myMsg;
 	struct addrinfo hints, *servinfo, *p;
 	int rv;
 	char s[INET6_ADDRSTRLEN];
@@ -86,9 +86,9 @@ int main(int argc, char *argv[])
 	freeaddrinfo(servinfo); // all done with this structure
 
 	// New ************** Added message below:
-	//*myMsg = "0123456789";
-	int myLen, myBytesSent;
-	myLen = strlen(*myMsg);
+	//myMsg = "0123456789";
+	//int myLen, myBytesSent;
+	//myLen = myMsg.length();
 
 	//while(1) {
 
@@ -105,8 +105,11 @@ int main(int argc, char *argv[])
 
 		printf("client: received '%s'\n",buf);
 
+		if (send(sockfd, "Hello from client!\n", 13, 0) == -1)
+				perror("send");
+
 		// send() stuff here
-		myBytesSent = send(sockfd, *myMsg, myLen, 0);
+		//myBytesSent = send(sockfd, *myMsg, myLen, 0);
 	//}
 
 	close(sockfd);
