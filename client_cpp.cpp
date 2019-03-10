@@ -17,7 +17,7 @@
 #include <arpa/inet.h>
 using namespace std;
 
-#define PORT "3490" // the port client will be connecting to 
+#define PORT "3490" // this is the port client will be connecting to 
 
 #define SERVERIP "192.168.0.2" // SERVER IP ADDRESS
 
