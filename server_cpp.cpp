@@ -158,6 +158,8 @@ int main(void)
 				// add function to write() sum to specific  client
 				bytesRecFromClient = recv(new_fd, buf, MAXDATASIZE-1, 0);
 				printf("server: received '%s'\n",buf);
+				cout<<"Hello from Rick"<<endl;
+				cout<<buf;
                         //}
 			close(new_fd);
 			exit(0);
